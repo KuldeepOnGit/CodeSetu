@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Codesetu - Smart Procurement</title>
+    <link rel="stylesheet" href="project.css">
+    <script src="project.js" defer></script>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🌾 Code<span>Setu</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#token">Book Token</a>
+        <a href="#centers">Centers</a>
+        <a href="#status">Status</a>
+        <a href="#admin">Admin</a>
+    </nav>
+
+    <button class="login-btn" onclick="openLogin()">Farmer Login</button>
+
+</header>
+
+
+<!-- ================= FARMER LOGIN MODAL ================= -->
+
+<div id="loginModal" class="login-modal">
+
+    <div class="login-box">
+
+        <button
+            class="close-btn"
+            onclick="closeLogin()"
+        >
+            ×
+        </button>
+
+        <h2>🌾 Farmer Login</h2>
+
+        <p>
+            Login using your registered mobile number
+        </p>
+
+        <!-- MOBILE NUMBER -->
+
+        <label>
+            Mobile Number
+        </label>
+
+        <input
+            type="tel"
+            id="mobile"
+            placeholder="Enter 10-digit mobile number"
+            maxlength="10"
+            required
+        >
+
+        <!-- PASSWORD -->
+
+        <label>
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+        >
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+            class="submit-btn"
+            onclick="loginUser()"
+        >
+            🔐 Login
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <p class="tag">🌱 Smart Agriculture • Digital Procurement</p>
+
+        <h1>
+            Smart Procurement
+            <br>
+            <span>For Every Farmer</span>
+        </h1>
+
+        <p>
+            CodeSetu connects farmers with procurement centers
+            through digital tokens, queue management and
+            real-time procurement tracking.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#token" class="primary-btn">🎟️ Book Token</a>
+            <a href="#centers" class="secondary-btn">📍 Find Center</a>
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="farmer-icon">👨‍🌾</div>
+
+        <h2>Welcome Farmer</h2>
+
+        <p>Manage your procurement easily.</p>
+
+        <div class="mini-card">
+            <span>🎟️ Today's Token</span>
+            <strong>KSN-1025</strong>
+        </div>
+
+        <div class="mini-card">
+            <span>⏱️ Waiting Time</span>
+            <strong>35 Minutes</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+    <h2>Our Smart Features</h2>
+
+    <p class="section-text">
+        Making the procurement process easier, faster and transparent.
+    </p>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="icon">🎟️</div>
+            <h3>Digital Token</h3>
+            <p>
+                Book your procurement token online and avoid
+                unnecessary queues.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">⏱️</div>
+            <h3>Queue Prediction</h3>
+            <p>
+                Get estimated waiting time based on current
+                queue conditions.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📍</div>
+            <h3>Find Center</h3>
+            <p>
+                Find nearby procurement centers and check
+                their availability.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">💰</div>
+            <h3>Payment Tracking</h3>
+            <p>
+                Track procurement and payment status from
+                one place.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FARMER DASHBOARD ================= -->
+<!-- ================= FARMER DASHBOARD ================= -->
+
+<section id="dashboard" class="dashboard">
+
+    <div class="section-heading">
+        <p>FARMER PANEL</p>
+        <h2>Farmer Dashboard</h2>
+    </div>
+
+
+    <div class="welcome-box">
+
+        <div>
+            <p>Welcome back 👋</p>
+
+            <h2 id="dashboardFarmerName">
+                Guest
+            </h2>
+
+            <p>
+                Farmer ID:
+                <span id="dashboardFarmerId">
+                    ---
+                </span>
+            </p>
+        </div>
+
+        <div>
+            <button class="primary-btn">
+                Update Profile
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <!-- TOKEN -->
+
+        <div class="dashboard-card">
+
+            <span>🎟️</span>
+
+            <h3>My Token</h3>
+
+            <h2 id="dashboardToken">
+                --
+            </h2>
+
+            <p id="dashboardTokenTime">
+                No active token
+            </p>
+
+        </div>
+
+
+        <!-- WAITING -->
+
+        <div class="dashboard-card">
+
+            <span>⏱️</span>
+
+            <h3>Waiting Time</h3>
+
+            <h2 id="dashboardWaiting">
+                --
+            </h2>
+
+            <p>
+                AI Estimated
+            </p>
+
+        </div>
+
+
+        <!-- PROCUREMENT -->
+
+        <div class="dashboard-card">
+
+            <span>📦</span>
+
+            <h3>Procurement</h3>
+
+            <h2 id="dashboardStatus">
+                Waiting
+            </h2>
+
+            <p id="dashboardCrop">
+                No crop selected
+            </p>
+
+        </div>
+
+
+        <!-- QUEUE -->
+
+        <div class="dashboard-card">
+
+            <span>👥</span>
+
+            <h3>Queue Position</h3>
+
+            <h2 id="dashboardQueue">
+                --
+            </h2>
+
+            <p>
+                Farmers ahead
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= TOKEN BOOKING ================= -->
+
+<section id="token" class="token-section">
+
+    <div class="section-heading">
+        <p>SMART TOKEN</p>
+        <h2>Book Your Procurement Token</h2>
+    </div>
+
+
+    <div class="form-container">
+
+        <form id="tokenForm">
+
+            <label>Farmer Name</label>
+
+            <input
+                type="text"
+                id="tokenFarmerName"
+                placeholder="Enter farmer name"
+                required
+            >
+
+
+            <label>Select Crop</label>
+
+            <select id="tokenCrop" required>
+
+                <option value="">
+                    Select Crop
+                </option>
+
+                <option value="Wheat">
+                    Wheat
+                </option>
+
+                <option value="Rice">
+                    Rice
+                </option>
+
+                <option value="Maize">
+                    Maize
+                </option>
+
+                <option value="Mustard">
+                    Mustard
+                </option>
+
+            </select>
+
+
+            <label>Procurement Center</label>
+
+            <select id="tokenCenter" required>
+
+                <option value="">
+                    Select Center
+                </option>
+
+                <option value="1">
+                    Center A
+                </option>
+
+                <option value="2">
+                    Center B
+                </option>
+
+                <option value="3">
+                    Center C
+                </option>
+
+            </select>
+
+
+            <label>Quantity (Quintal)</label>
+
+            <input
+                type="number"
+                id="tokenQuantity"
+                placeholder="Enter quantity"
+                required
+            >
+
+
+            <label>Preferred Date</label>
+
+            <input
+                type="date"
+                id="tokenDate"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                🎟️ Generate Token
+            </button>
+
+        </form>
+
+
+        <div class="token-result">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Token Booked!
+            </h2>
+
+            <p>
+                Your procurement token is successfully generated.
+            </p>
+
+            <div class="token-number">
+                KSN-1025
+            </div>
+
+            <div class="token-info">
+
+                <p>
+                    <strong>Center:</strong>
+                    Bareilly Procurement Center
+                </p>
+
+                <p>
+                    <strong>Reporting Time:</strong>
+                    11:30 AM
+                </p>
+
+                <p>
+                    <strong>Farmers Ahead:</strong>
+                    12
+                </p>
+
+                <p>
+                    <strong>Estimated Waiting:</strong>
+                    35 Minutes
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROCUREMENT CENTERS ================= -->
+
+<section id="centers" class="centers">
+
+    <div class="section-heading">
+
+        <p>PROCUREMENT CENTERS</p>
+
+        <h2>Find Nearby Centers</h2>
+
+    </div>
+
+
+   <div class="center-grid" id="centerGrid">
+
+    <!-- Live centers will be loaded from database -->
+
+</div>
+
+</section>
+<!-- ================= STATUS ================= -->
+
+<section id="status" class="status-section">
+
+    <div class="section-heading">
+
+        <p>TRACK PROCUREMENT</p>
+
+        <h2>Procurement Status</h2>
+
+    </div>
+
+
+    <!-- TOKEN SEARCH -->
+
+    <div class="status-card">
+
+        <div class="status-search">
+
+            <h3>
+                🔎 Check Your Token Status
+            </h3>
+
+            <p>
+                Enter your token number to see the
+                latest queue and procurement status.
+            </p>
+
+            <div class="status-search-box">
+
+                <input
+    type="text"
+    id="statusTokenInput"
+    placeholder="Enter token e.g. KSN-1027"
+>
+
+                <button
+                    type="button"
+                    class="submit-btn"
+                    onclick="checkTokenStatus()"
+                >
+                    Check Status
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- DYNAMIC RESULT -->
+
+        <div
+            id="statusResult"
+            class="status-result"
+            style="display:none;"
+        >
+
+            <div class="status-header">
+
+                <div>
+
+                    <h3 id="statusTokenTitle">
+                        Token KSN-4
+                    </h3>
+
+                    <p>
+                        Farmer ID:
+                        <strong id="statusFarmerId">
+                            --
+                        </strong>
+                    </p>
+
+                </div>
+
+                <span
+                    id="statusBadge"
+                    class="status-badge"
+                >
+                    Waiting
+                </span>
+
+            </div>
+
+
+            <div class="status-info-grid">
+
+                <div class="status-info-box">
+
+                    <span>
+                        👥 Queue Position
+                    </span>
+
+                    <strong id="statusQueue">
+                        --
+                    </strong>
+
+                </div>
+
+                <div class="status-info-box">
+
+                    <span>
+                        📦 Procurement
+                    </span>
+
+                    <strong id="statusProcurement">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item completed">
+
+                    <div class="circle">
+                        ✓
+                    </div>
+
+                    <div>
+                        <h3>
+                            Token Generated
+                        </h3>
+
+                        <p>
+                            Token successfully generated
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="timeline-item active"
+                >
+
+                    <div class="circle">
+                        2
+                    </div>
+
+                    <div>
+                        <h3>
+                            Queue Status
+                        </h3>
+
+                        <p>
+                            Your position is shown above
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="circle">
+                        3
+                    </div>
+
+                    <div>
+                        <h3>
+                            Procurement Processing
+                        </h3>
+
+                        <p>
+                            Will update according to current status
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="circle">
+                        4
+                    </div>
+
+                    <div>
+                        <h3>
+                            Crop Accepted
+                        </h3>
+
+                        <p>
+                            Pending
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="circle">
+                        5
+                    </div>
+
+                    <div>
+                        <h3>
+                            Payment Received
+                        </h3>
+
+                        <p>
+                            Pending
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+
+<section id="admin" class="admin-section">
+
+    <div class="section-heading">
+
+        <p>GOVERNMENT PANEL</p>
+
+        <h2>Admin Dashboard</h2>
+
+    </div>
+
+
+    <div class="admin-stats">
+
+        <div class="admin-card">
+
+            <span>👨‍🌾</span>
+
+            <p>
+                Total Farmers
+            </p>
+
+            <h2>
+                1,250
+            </h2>
+
+        </div>
+
+
+        <div class="admin-card">
+
+            <span>🎟️</span>
+
+            <p>
+                Today's Tokens
+            </p>
+
+            <h2>
+                420
+            </h2>
+
+        </div>
+
+
+        <div class="admin-card">
+
+            <span>📦</span>
+
+            <p>
+                Processed
+            </p>
+
+            <h2>
+                280
+            </h2>
+
+        </div>
+
+
+        <div class="admin-card">
+
+            <span>⏳</span>
+
+            <p>
+                Pending
+            </p>
+
+            <h2>
+                140
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-table">
+
+        <h3>
+            Procurement Center Monitoring
+        </h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Center</th>
+                    <th>Queue</th>
+                    <th>Waiting</th>
+                    <th>Capacity</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>
+                        Bareilly Center
+                    </td>
+
+                    <td>
+                        12
+                    </td>
+
+                    <td>
+                        35 Min
+                    </td>
+
+                    <td>
+                        75%
+                    </td>
+
+                    <td>
+                        <span class="table-green">
+                            Available
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Faridpur Center
+                    </td>
+
+                    <td>
+                        5
+                    </td>
+
+                    <td>
+                        15 Min
+                    </td>
+
+                    <td>
+                        45%
+                    </td>
+
+                    <td>
+                        <span class="table-green">
+                            Available
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Lucknow Center
+                    </td>
+
+                    <td>
+                        45
+                    </td>
+
+                    <td>
+                        90 Min
+                    </td>
+
+                    <td>
+                        95%
+                    </td>
+
+                    <td>
+                        <span class="table-red">
+                            High Crowd
+                        </span>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        🌾 CodeSetu
+    </div>
+
+    <p>
+        Smart Procurement Management System for Farmers
+    </p>
+
+    <p class="copyright">
+        © 2026 CodeSetu. Hackathon Project.
+    </p>
+
+</footer>
+
+
+</body>
+</html>
