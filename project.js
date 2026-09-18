@@ -3,7 +3,7 @@
 // Frontend connected with FastAPI + MySQL Backend
 // ==========================================================
 
-const API_URL = "http://127.0.0.1:5001";
+const API_URL = "https://codesetu-1.onrender.com";
 
 
 // ==========================================================
